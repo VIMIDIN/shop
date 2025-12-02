@@ -1,0 +1,18 @@
+@startuml
+abstract class SupportHandler {
+  -nextHandler : SupportHandler
+  +setNextHandler(nextHandler)
+  +handleRequest(level)
+}
+
+class LevelOneHandler
+class LevelTwoHandler
+class LevelThreeHandler
+
+SupportHandler <|-- LevelOneHandler
+SupportHandler <|-- LevelTwoHandler
+SupportHandler <|-- LevelThreeHandler
+
+LevelOneHandler --> LevelTwoHandler : nextHandler
+LevelTwoHandler --> LevelThreeHandler : nextHandler
+@enduml

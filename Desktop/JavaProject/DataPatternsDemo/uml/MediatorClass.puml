@@ -1,0 +1,25 @@
+@startuml
+interface Mediator {
+  +sendMessage(message, user)
+  +addUser(user)
+}
+
+class ChatMediator {
+  -users : List<User>
+  +sendMessage(message, user)
+  +addUser(user)
+}
+
+abstract class User {
+  -mediator : Mediator
+  -name : String
+  +sendMessage(message)
+  +receiveMessage(message)
+}
+
+class ConcreteUser
+
+Mediator <|.. ChatMediator
+User <|-- ConcreteUser
+ChatMediator o-- User
+@enduml
